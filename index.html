@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Auth Generator</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: 50px auto; padding: 0 20px; }
+    label, input, button, textarea { display: block; width: 100%; margin-bottom: 10px; }
+    textarea { height: 80px; resize: none; }
+  </style>
+</head>
+<body>
+  <h1>Basic Auth Generator</h1>
+  <label for="username">Username:</label>
+  <input id="username" type="text" placeholder="Enter username">
+  <label for="password">Password:</label>
+  <input id="password" type="password" placeholder="Enter password">
+  <button id="generate">Generate Basic Auth</button>
+  <label for="output">Authorization Header:</label>
+  <textarea id="output" readonly></textarea>
+  <script>
+    document.getElementById('generate').addEventListener('click', () => {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      // Create Base64-encoded token and prepend 'Basic '
+      const token = btoa(`${user}:${pass}`);
+      document.getElementById('output').value = `Basic ${token}`;
+    });
+  </script>
+</body>
+</html>
